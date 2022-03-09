@@ -4,7 +4,7 @@ services:
   web:
     image: ${IMAGE_NAME}:${IMAGE_TAG}
     deploy:
-      replicas: 3
+      replicas: 1
 
   lb:
     image: nginx
