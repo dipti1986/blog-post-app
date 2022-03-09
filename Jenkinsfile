@@ -17,6 +17,8 @@ pipeline {
                 script{
                     IMAGE_NAME = "${JOB_NAME}".tokenize("/")[0]
                     sh """
+                        if [ -d "htmlcov" ]; then rm -Rf htmlcov; fi
+                        mkdir htmlcov
                         sudo docker build . -t ${IMAGE_NAME}:${BUILD_NUMBER}
                         sudo docker run -p 5000:5000 -v ${WORKSPACE}/htmlcov:/app/htmlcov ${IMAGE_NAME}:${BUILD_NUMBER} pip install pytest pytest-cov && python3 -m pytest --cov=. --cov-report html
                     """
@@ -25,7 +27,7 @@ pipeline {
                     allowMissing: false,
                     alwaysLinkToLastBuild: false,
                     keepAll: true,
-                    reportDir: 'app/htmlcov',
+                    reportDir: 'htmlcov',
                     reportFiles: 'index.html',
                     reportName: 'Code Coverage Report'
                 ]
