@@ -25,7 +25,7 @@ pipeline {
                     allowMissing: false,
                     alwaysLinkToLastBuild: false,
                     keepAll: true,
-                    reportDir: 'app/htmlcov',
+                    reportDir: 'htmlcov',
                     reportFiles: 'index.html',
                     reportName: 'Code Coverage Report'
                 ]
