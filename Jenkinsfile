@@ -33,7 +33,7 @@ pipeline {
             }
         }
         stage('Docker Push Registry') {
-            when { branch pattern: "master|develop", comparator: "REGEXP"}
+            when { branch pattern: "develop", comparator: "REGEXP"}
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                 sh """
@@ -47,7 +47,7 @@ pipeline {
             agent {
                 label "docker-swarm-manager"
             }
-            when { branch pattern: "master|develop", comparator: "REGEXP"}
+            when { branch pattern: "develop", comparator: "REGEXP"}
             steps {
                 sh """
                     sudo IMAGE_NAME=diptichoudhary/${IMAGE_NAME} IMAGE_TAG=${BUILD_NUMBER} docker stack deploy --compose-file ./docker-compose.yaml ${IMAGE_NAME}
