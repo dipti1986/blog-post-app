@@ -33,7 +33,7 @@ pipeline {
             }
         }
         stage('Docker Push Registry') {
-            when { branch pattern: "master", comparator: "REGEXP"}
+            when { branch pattern: "master|develop", comparator: "REGEXP"}
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                 sh """
@@ -43,14 +43,37 @@ pipeline {
                 }
             }
         }
-        stage('Deploy To Docker Swarm') {
+        stage('Deploy To Docker Swarm DEV Environment') {
+            agent {
+                label "docker-swarm-manager"
+            }
+            when { branch pattern: "master|develop", comparator: "REGEXP"}
+            steps {
+                sh """
+                    sudo IMAGE_NAME=diptichoudhary/${IMAGE_NAME} IMAGE_TAG=${BUILD_NUMBER} docker stack deploy --compose-file ./docker-compose.yaml ${IMAGE_NAME}
+                """
+            }
+        }
+        stage('Create Release Tag and Push') {
+            when { branch pattern: "master", comparator: "REGEXP"}
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                sh """
+                    sudo docker login --username ${USERNAME} --password ${PASSWORD}
+                    sudo docker tag  diptichoudhary/${IMAGE_NAME}:${BUILD_NUMBER} diptichoudhary/${IMAGE_NAME}:release_v${BUILD_NUMBER}
+                    sudo docker push diptichoudhary/${IMAGE_NAME}:release_v${BUILD_NUMBER}
+                """
+                }
+            }
+        }
+        stage('Deploy To Docker Swarm PRD Environment') {
             agent {
                 label "docker-swarm-manager"
             }
             when { branch pattern: "master", comparator: "REGEXP"}
             steps {
                 sh """
-                    sudo IMAGE_NAME=diptichoudhary/${IMAGE_NAME} IMAGE_TAG=${BUILD_NUMBER} docker stack deploy --compose-file ./docker-compose.yaml ${IMAGE_NAME}
+                    sudo IMAGE_NAME=diptichoudhary/${IMAGE_NAME} IMAGE_TAG=release_v${BUILD_NUMBER} docker stack deploy --compose-file ./docker-compose.yaml ${IMAGE_NAME}
                 """
             }
         }
