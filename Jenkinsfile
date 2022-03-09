@@ -19,8 +19,7 @@ pipeline {
                     sh """
                         if [ -d "htmlcov" ]; then rm -Rf htmlcov; fi
                         mkdir htmlcov
-                        sudo docker build . -t ${IMAGE_NAME}:${BUILD_NUMBER}
-                        sudo docker run -p 5000:5000 -v ${WORKSPACE}/htmlcov:/app/htmlcov ${IMAGE_NAME}:${BUILD_NUMBER} pip install pytest pytest-cov && python3 -m pytest --cov=. --cov-report html
+                        sudo docker run -p 5000:5000 -v ${WORKSPACE}/htmlcov:/app/htmlcov diptichoudhary/${IMAGE_NAME}:${BUILD_NUMBER} pip install pytest pytest-cov && python3 -m pytest --cov=. --cov-report html
                     """
                 }
                 publishHTML target: [
@@ -50,11 +49,9 @@ pipeline {
             }
             when { branch pattern: "master", comparator: "REGEXP"}
             steps {
-                withCredentials([string(credentialsId: 'db_password', variable: 'SECRET')]) {
-                    sh """
-                        sudo DB_PASSWORD=${SECRET} IMAGE_TAG=${BUILD_NUMBER} IMAGE_NAME=diptichoudhary/${IMAGE_NAME} docker stack deploy --compose-file ./docker-compose.yaml ${IMAGE_NAME}
-                    """
-                }
+                sh """
+                    sudo IMAGE_NAME=diptichoudhary/${IMAGE_NAME} IMAGE_TAG=${BUILD_NUMBER} docker stack deploy --compose-file ./docker-compose.yaml ${IMAGE_NAME}
+                """
             }
         }
     }
