@@ -4,7 +4,9 @@ services:
   web:
     image: ${IMAGE_NAME}:${IMAGE_TAG}
     deploy:
-      replicas: 1
+      replicas: 3
+    volumes:
+      - "./instance:/app/instance:rw"  
 
   lb:
     image: nginx
