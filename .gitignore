@@ -4,5 +4,4 @@ minitwit.egg-info
 .coverage
 tests/__pycache__
 flaskr/__pycache__
-instance
 .DS_Store
