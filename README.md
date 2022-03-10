@@ -39,7 +39,7 @@ In addition to what has been set out in the brief, I am also required to include
 
 ### My Approach
 To achieve this, I have decided to produce a simple blog post app that must allow the user to do the following:
-* Create a user account (satisfies creat) that stores:
+* Create a user account (satisfies create) that stores:
    * *User Name*
    * *Password*
 * Create blog posts  with the following information:
@@ -57,7 +57,7 @@ Pictured below is an entity relationship diagram (ERD) showing the structure of 
 
 As shown in the ERD, the app models a one-to-many relationship between User entities and Post entities. This allows the user to create multiple posts.
 
-### Github Beanching strategy
+### Github Branching strategy
 Instead of a single main branch, this workflow uses two branches to record the history of the project. The main branch stores the official release history, and the develop branch serves as an integration branch for features.
 
 Each new feature should reside in its own feature branch.But, instead of branching off of main, feature branches use develop as their parent branch. When a feature is complete, it gets merged back into develop. Features should never interact directly with main.
@@ -67,21 +67,21 @@ Each new feature should reside in its own feature branch.But, instead of branchi
 ### CI/CD Pipeline
 ![ci-cd](https://user-images.githubusercontent.com/84717522/157670275-d8c4dbe8-4ecc-4ac8-8558-4dc5748a8e78.png)
 
-Pictured above is the continuous integration contineus deployment pipeline process. 
-* Developer creates new feature beanch
+Pictured above is the continuous integration continues deployment pipeline process. 
+* Developer creates new feature branch
 * Perform code change
 * Push code change to Github
 * Automated jenkins build triggered
 
 Build stage for Feature branch
-* 'Checkout SCM' (pull code from Github respository)
+* 'Checkout SCM' (pull code from Github repository)
 * 'Build Docker Image' (Build docker image with latest code)
 * 'Test App' (Run unit test and code coverage in docker)
 
 ![Feature Branch](https://user-images.githubusercontent.com/84717522/157683444-ff0ed252-6d8e-409a-b191-9218b131e329.png)
 
 Build stage for Develop branch
-* 'Checkout SCM' (pull code from Github respository)
+* 'Checkout SCM' (pull code from Github repository)
 * 'Build Docker Image' (Build docker image with latest code)
 * 'Test App' (Run unit test and code coverage in docker)
 * 'Docker Push Registry' (Push docker image to docker registry)
@@ -90,7 +90,7 @@ Build stage for Develop branch
 ![Develop Branch](https://user-images.githubusercontent.com/84717522/157683648-a79328df-0684-49c3-a31f-319e20edf817.png)
 
 Build stage for master branch
-* 'Checkout SCM' (pull code from Github respository)
+* 'Checkout SCM' (pull code from Github repository)
 * 'Build Docker Image' (Build docker image with latest code)
 * 'Test App' (Run unit test and code coverage in docker)
 * 'Create Release Tag and Push' (Push docker image to docker registry)
@@ -98,7 +98,9 @@ Build stage for master branch
 
 ![Master Branch](https://user-images.githubusercontent.com/84717522/157684125-898305aa-df09-4e57-9793-0bc0bcf508ea.png)
 
-Once the app is considered stable, it is then pushed to a separate VM for deployment. This service is run using the Python-based HTTP web server Gunicorn, which is designed around the concept of 'workers' who split the CPU resources of the VM equally. When users connect to the server, a worker is assigned to that connection with their dedicated resources, allowing the server to run faster for each user.
+Same Jenkinsfile has different conditional stages for feature develop and master branch. It deploy the application to same docker swarm environment for DEV and PROD.
+
+Same URL can be use for DEV and PROD testing.  
 
 ## Project Tracking
 Jira was used to track the progress of the project (pictured below). You can find the link to this board here: https://dip123.atlassian.net/jira/software/projects/DIP/boards/1
@@ -111,7 +113,7 @@ The board has been designed such that elements of the project move from left to 
 * *In Analysis*
    The story is analyse in this stage. Gather all required details for the story.
 * *DOR*
-   Once the story has all details and redy for implementation.
+   Once the story has all details and ready for implementation.
 * *In Progress*
    Once the element has had any code written for it/exists in any way, it is placed in the 'in progress' stage.
 * *In Testing*
@@ -170,7 +172,7 @@ There are a few bugs with the current build of the app:
 
 ## Future Improvements
 There are a number of improvements I would like to implement (outside of current bugs):
-* Currently using SQLight. Extenal DB can be implemented.
+* Currently using SQLight. External DB can be implemented.
 * User interface can be improved.
 * Can be added more user details.
 * More option can be added in Post.
