@@ -10,9 +10,10 @@
    * [Additional Requirements](#additional-requirements)
    * [My Approach](#my-approach)
 * [Architecture](#architecture)
+   * [External Loadbalancer] (#external-loadbalancer)
    * [Database Structure](#database-structure)
    * [Github Branching Strategy](#github-branching-strategy)
-   * [CI/CD Pipeline](#ci-pipeline)
+   * [CI/CD Pipeline](#ci/cd-pipeline)
 * [Project Tracking](#project-tracking)
 * [Risk Assessment](#risk-assessment)
 * [Testing](#testing)
@@ -50,10 +51,13 @@ To achieve this, I have decided to produce a simple blog post app that must allo
 * Read post they and other users have created (satisfies 'Read')
 
 ## Architecture
+### External Loadbalancer
+Nginc has been used as external load balancer. Nginx config can be found in nginx folder.
+<img width="400" alt="Nginx Load Balancer" src="https://user-images.githubusercontent.com/84717522/157709614-24e147e7-7332-4729-aad7-b048d5d6b3ba.png">
+
 ### Database Structure
 Pictured below is an entity relationship diagram (ERD) showing the structure of the database. 
-
-<img width="600" alt="Screenshot 2022-03-10 at 12 35 26" src="https://user-images.githubusercontent.com/84717522/157663028-5605c9a8-f668-40aa-9524-ff8d380c1673.png">
+<img width="400" alt="Screenshot 2022-03-10 at 12 35 26" src="https://user-images.githubusercontent.com/84717522/157663028-5605c9a8-f668-40aa-9524-ff8d380c1673.png">
 
 As shown in the ERD, the app models a one-to-many relationship between User entities and Post entities. This allows the user to create multiple posts.
 
