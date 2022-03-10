@@ -13,6 +13,7 @@
    * [External Loadbalancer](#external-loadbalancer)
    * [Database Structure](#database-structure)
    * [Github Branching Strategy](#github-branching-strategy)
+   * [Github Branch Security](#github-branch-security)
    * [CI/CD Pipeline](#ci/cd-pipeline)
 * [Project Tracking](#project-tracking)
 * [Risk Assessment](#risk-assessment)
@@ -68,11 +69,12 @@ Each new feature should reside in its own feature branch.But, instead of branchi
 
 <img width="600" alt="git-branching" src="https://user-images.githubusercontent.com/84717522/157659815-9f453983-ec4c-4081-b4ff-d6d1b80c74e7.png">
 
-### Github branch security added.
+### Github Branch Security.
 
 * Change can only be merged to featur branch.
 * Feature branch jenkins job must be success as PR check.
 * External code review is required.
+* CODEOWNERS file added
 
 <img width="800" alt="github branch security" src="https://user-images.githubusercontent.com/84717522/157712154-90618134-3eb8-4191-a459-743e3c2ffb9f.png">
 
