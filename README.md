@@ -10,7 +10,7 @@
    * [Additional Requirements](#additional-requirements)
    * [My Approach](#my-approach)
 * [Architecture](#architecture)
-   * [External Loadbalancer] (#external-loadbalancer)
+   * [External Loadbalancer](#external-loadbalancer)
    * [Database Structure](#database-structure)
    * [Github Branching Strategy](#github-branching-strategy)
    * [CI/CD Pipeline](#ci/cd-pipeline)
@@ -67,6 +67,14 @@ Instead of a single main branch, this workflow uses two branches to record the h
 Each new feature should reside in its own feature branch.But, instead of branching off of main, feature branches use develop as their parent branch. When a feature is complete, it gets merged back into develop. Features should never interact directly with main.
 
 <img width="600" alt="git-branching" src="https://user-images.githubusercontent.com/84717522/157659815-9f453983-ec4c-4081-b4ff-d6d1b80c74e7.png">
+
+### Github branch security added.
+
+* Change can only be merged to featur branch.
+* Feature branch jenkins job must be success as PR check.
+* External code review is required.
+
+<img width="800" alt="github branch security" src="https://user-images.githubusercontent.com/84717522/157712154-90618134-3eb8-4191-a459-743e3c2ffb9f.png">
 
 ### CI/CD Pipeline
 ![ci-cd](https://user-images.githubusercontent.com/84717522/157670275-d8c4dbe8-4ecc-4ac8-8558-4dc5748a8e78.png)
