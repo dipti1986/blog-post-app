@@ -138,11 +138,12 @@ The board has been designed such that elements of the project move from left to 
    Any element that is considered to be finished (i.e. works according to its specification) lives in this stage.
 
 ## Risk Assessment
-The risk assessment for this project can be found in full here: https://docs.google.com/spreadsheets/d/1WfKQAjsBfErpQOywRmnZbCe6zw7yFxESFB8WhQd69Es/edit?usp=sharing
+The risk assessment for this project can be found in full here: https://docs.google.com/spreadsheets/d/1B1IHydX4QC2gAIri2bXEZATd-PPsuQZ3m1RxNQ7glgg/edit?usp=sharing
 
 Here's a quick screenshot:
 
-![RiskAssessment][riskassessment]
+<img width="1200" alt="Screenshot 2022-03-11 at 00 08 08" src="https://user-images.githubusercontent.com/84717522/157776540-ef98e6c5-3f93-4470-a1e7-46431aea3ecd.png">
+
 
 ## Testing
 pytest is used to run unit tests on the app. These are designed to assert that if a certain function is run, the output should be a known value. Jenkins produces console outputs (pictured below) that will inform the developer how many tests the code passed and which tests they failed.
