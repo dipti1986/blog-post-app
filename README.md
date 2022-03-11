@@ -155,7 +155,7 @@ pytest also produces a coverage report to show how much of the code in the app h
 ![pytest coverage](https://user-images.githubusercontent.com/84717522/157693314-8d8e61fd-307d-4c73-ad06-1e2f6a71cb6a.png)
 
 ## Front-End Design
-The front-end of the app is rudimentary at this stage, as the front-end is built purely with very simple HTML. It is largely functional and stable, however.
+The front-end of the app is rudimentary at this stage, as the front-end is built purely with very simple HTML. It is fully functional and stable.
 
 When the user navigates to the URL, they are directed to the home page:
 
@@ -183,7 +183,7 @@ Edit Post Page
 
 ## Known Issues
 There are a few bugs with the current build of the app:
-* Some time Nginx load balancer routing timeout
+* Some time Nginx load balancer routing need refresh
 
 ## Future Improvements
 There are a number of improvements I would like to implement (outside of current bugs):
