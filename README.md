@@ -4,7 +4,7 @@
 * Jira: https://dip123.atlassian.net/jira/software/projects/DIP/boards/1
 * Website: http://docker-swarm-manager.uksouth.cloudapp.azure.com/
 * Jenkins: http://diptijenkins.uksouth.cloudapp.azure.com:8080/job/blog-post-app/
-* Video:  
+* Video: https://drive.google.com/file/d/1KrAvZpYXaiRCCkzI2hnkBzFMoUJQS1dT/view?usp=sharing
 
 ## Contents
 * [Brief](#brief)
