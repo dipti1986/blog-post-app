@@ -3,6 +3,7 @@
 ### Resources:
 * Jira: https://dip123.atlassian.net/jira/software/projects/DIP/boards/1
 * Website: http://docker-swarm-manager.uksouth.cloudapp.azure.com/
+* Jenkins: http://diptijenkins.uksouth.cloudapp.azure.com:8080/job/blog-post-app/
 * Video:  
 
 ## Contents
@@ -53,7 +54,7 @@ To achieve this, I have decided to produce a simple blog post app that must allo
 
 ## Architecture
 ### External Loadbalancer
-Nginc has been used as external load balancer. Nginx config can be found in nginx folder.
+Nginx has been used as external load balancer. Nginx config can be found in nginx folder.
 <img width="400" alt="Nginx Load Balancer" src="https://user-images.githubusercontent.com/84717522/157709614-24e147e7-7332-4729-aad7-b048d5d6b3ba.png">
 
 ### Database Structure
@@ -84,8 +85,15 @@ Each new feature should reside in its own feature branch.But, instead of branchi
 Pictured above is the continuous integration continues deployment pipeline process. 
 * Developer creates new feature branch
 * Perform code change
-* Push code change to Github
-* Automated jenkins build triggered
+* Push code change to Github feature branch
+* Jenkins feature build triggered automatically through webhookand test the code.
+* Raise pull request to merge the change in develop branch.
+* Once PR is merged after codereview and PR job, develop branch job get trigger.
+* Develop jenkins job build docker image, test, push to docker registry and deploy to DEV docker swarm environmnt.
+* Raise PR to merge the change to master branch.
+* master jenkins job build docker image, test, push to docker registry and deploy to PRD docker swarm environmnt.
+
+<img width="800" alt="Screenshot 2022-03-11 at 09 58 35" src="https://user-images.githubusercontent.com/84717522/157847070-b2353bef-e7ba-4d7b-90c4-acd6161d7aee.png">
 
 Build stage for Feature branch
 * 'Checkout SCM' (pull code from Github repository)
@@ -187,7 +195,7 @@ There are a few bugs with the current build of the app:
 
 ## Future Improvements
 There are a number of improvements I would like to implement (outside of current bugs):
-* Currently using SQLight. External DB can be implemented.
+* Currently using SQLite. External DB can be implemented.
 * User interface can be improved.
 * Can be added more user details.
 * More option can be added in Post.
