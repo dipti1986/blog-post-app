@@ -5,6 +5,7 @@
 * Website: http://docker-swarm-manager.uksouth.cloudapp.azure.com/
 * Jenkins: http://diptijenkins.uksouth.cloudapp.azure.com:8080/job/blog-post-app/
 * Video: https://drive.google.com/file/d/1KrAvZpYXaiRCCkzI2hnkBzFMoUJQS1dT/view?usp=sharing
+* Jenkins log for master branch: https://drive.google.com/file/d/1euIOi3lNeD2XD6xcZW4cjvjfblKFrBma/view?usp=sharing
 
 ## Contents
 * [Brief](#brief)
